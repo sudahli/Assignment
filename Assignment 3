@@ -1,0 +1,60 @@
+/******************************************************************************
+
+ 3/9/2022 By Su Dahli
+*******************************************************************************/
+#include <stdio.h>
+#include<conio.h>
+#define SIZE 7
+int arr[SIZE],i,position,element;
+int main()
+{
+    int *ptr;
+    
+    printf("Enter the temperatures of the A city During a week.\n");
+    
+    for(i=0; i<SIZE; i++){
+        scanf("%d",&arr[i]);
+        
+    }
+    printf("The degree centigrade of temperatures are ");
+    
+     for(i=0; i<SIZE; i++){
+        printf("%d ",arr[i]);
+        
+    }
+    
+    printf("\nEnter the day you want to know.");
+    scanf("%d",&i);
+    
+    ptr=&arr[i-1];
+    
+    printf("\nThe degree centigrade of temperature in that day is %dC",*ptr);
+    
+    printf("\nEnter the day you want to change.");
+    scanf("%d",&position);
+    
+    ptr= &arr[position-1];
+    *ptr=*ptr + 273  ;
+    printf("\nThe degree Kelvin of temperature in that day is %dK",*ptr);
+    
+    printf("The temperatures of the A city During a week.\n");
+    for(i=0; i<SIZE; i++){
+        printf("%d ",arr[i]);
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+  getch();
+
+    return 0;
+}
+
+
