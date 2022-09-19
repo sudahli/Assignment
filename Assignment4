@@ -1,0 +1,77 @@
+#include "stdio.h"
+#include "stdlib.h"
+
+int main(){
+
+    FILE *fptr;
+
+    if((fptr = fopen("users.txt","a")) == NULL){
+
+        puts("File cannot open!");
+        exit(1);
+
+    } else{
+
+        puts("Enter the ID , Username , password , amount, age, location");
+        puts("Enter EOF to end input.");
+        printf(">:");
+        
+        
+        
+        int id;
+        char username[30];
+        char password[30];
+        unsigned int amount;
+        int age;
+        char location[30];
+        
+
+        scanf("%d%s%s%d%d%s", &id , &username, &password, &amount, &age , &location);
+
+        while (!feof(stdin)){
+            fprintf(fptr , "%5d%5s%5s%5d%5d%5s", id , username, password, amount, age , location,'/n');
+            printf(">:");
+            scanf("%d%s%s%d%d%s", &id , &username, &password, &amount, &age , &location);
+
+        }
+        int i=0;
+        
+        printf("If you want to insert data, press '1': If you want to findt data, press '2':If you want to update data, press '3': ");
+        scanf("%d",&i);
+        if(i==1){
+            puts("Enter the ID , Username , password , amount, age, location");
+        printf(">:");
+        
+            scanf("%d%s%s%d%d%s", &id , &username, &password, &amount, &age , &location);
+            fprintf(fptr , "%5d%5s%5s%5d%5d%5s", id , username, password, amount, age , location,'/n');
+
+        }
+        
+        if(i==2){
+            int d=0;
+            printf("Enter the information you want to find: ");
+            scanf("%d",&d);
+            
+            c= getc(fptr);
+        if(c==EOF){
+            break;
+        }else{
+            printf("%c",c);
+            if(c==d){
+                printf("I found %c ",c);
+ 
+            }
+        }
+        if(i==3){
+            
+            int f=0;
+            printf("Enter the information you want to edit: ");
+            scanf("%d",&f);
+        }
+        fclose(fptr);
+
+        return 0;
+
+    }
+
+}
