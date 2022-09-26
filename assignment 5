@@ -1,0 +1,137 @@
+#include "stdio.h"
+#include "stdlib.h"
+
+#define ARRSIZE 10
+
+
+int count = 0;
+struct stack{
+    int array[ARRSIZE];
+    int top;
+    int id;
+    char username[30];
+    char password[30];
+    unsigned int amount;
+    int age;
+    char location[30];
+
+};
+typedef struct stack su;
+
+void createEmptyStack(su *stackMemory){
+
+    stackMemory->top = -1 ;
+
+}
+int full(su *s){
+    if(s->top == -1)
+        return -1;
+    else
+        return 1;
+
+}
+
+int empty(su *s){
+    if(s->top == ARRSIZE-1)
+        return 1;
+    else
+        return 0;
+}
+void push(su *s , int data){
+    if(full(s)){
+        printf("Our StackMemory is full!");
+    } else{
+        s->top++;
+        s->array[s->top] = data;
+    }
+    count++;
+}
+
+void pop(su *s){
+    if(empty(s)){
+        printf("Stack empty.");
+    }else{
+        printf("Pop data =%d",s->array[s->top]);
+        s->top--;
+    }
+    count--;
+}
+
+int main(){
+
+    su *stackMemory=(su *)malloc(sizeof(su));
+    createEmptyStack(stackMemory);
+
+    push(stackMemory , 101);
+    
+    FILE *fptr;
+
+    if((fptr = fopen("assignment.txt","a")) == NULL){
+
+        puts("File cannot open!");
+        exit(1);
+
+    } else{
+
+        puts("Enter the ID , Username , password , amount, age, location");
+        puts("Enter EOF to end input.");
+        printf(">:");
+        
+        scanf("%d%s%s%d%d%s", &stackMemory->id , &stackMemory->username, &stackMemory->password, &stackMemory->amount, &stackMemory->age , &stackMemory->location);
+
+        while (!feof(stdin)){
+            fprintf(fptr , "%5d%5s%5s%5d%5d%5s", stackMemory->id , stackMemory->username, stackMemory->password, stackMemory->amount, stackMemory->age , stackMemory->location);
+            printf(">:");
+            scanf("%d%s%s%d%d%s", &stackMemory->id , &stackMemory->username, &stackMemory->password, &stackMemory->amount, &stackMemory->age , &stackMemory->location);
+
+        }
+        int i=0;
+        
+        printf("If you want to insert data, press '1': If you want to findt data, press '2':If you want to update data, press '3': ");
+        scanf("%d",&i);
+        if(i==1){
+            puts("Enter the ID , Username , password , amount, age, location");
+        printf(">:");
+        
+            scanf("%d%s%s%d%d%s", &stackMemory->id , &stackMemory->username, &stackMemory->password, &stackMemory->amount, &stackMemory->age , &stackMemory->location);
+            fprintf(fptr , "%5d%5s%5s%5d%5d%5s", id , username, password, amount, age , location,'/n');
+
+        }
+        
+        if(i==2){
+            int d=0;
+            printf("Enter the information you want to find: ");
+            scanf("%d",&d);
+            
+            c= getc(fptr);
+        if(c==EOF){
+            break;
+        }else{
+            printf("%c",c);
+            if(c==d){
+                printf("I found %c ",c);
+ 
+            }
+        }
+        if(i==3){
+            
+            int f=0;
+            printf("Enter the information you want to edit: ");
+            scanf("%d",&f);
+        }
+        fclose(fptr);
+
+        
+
+
+
+
+    return 0;
+
+
+}
+
+
+
+
+
